@@ -1,4 +1,22 @@
-Part1 PR: https://github.com/batoolmalkawii/game-of-greed/pull/2
+Part1 PR: https://github.com/batoolmalkawii/game-of-greed/pull/3
+
+* Game of Greed is a Dice game, aka _Farkle_. In part1, we implemented the following:
+
+**GameLogic** class:
+
+`calculate_score`: returns the round score according the _game rules_.
+
+`roll_dice`: returns a tuple with random values between 1 and 6.
+
+**Banker** class:
+                
+`shelf`: tracks unbanked points 
+
+`bank`: adds unbanked points to total and return the deposited amount.
+
+`clear_shelf`: removes any unbanked points, resetting to zero.
+
+* **Game Rules**:
 
         # 1 cases
         # if dice[1] == 1:
