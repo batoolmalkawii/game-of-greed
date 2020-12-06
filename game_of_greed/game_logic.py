@@ -4,40 +4,40 @@ from collections import Counter
 scoring = {
     "Straight 1- 6": 1500,
     "Three Pairs": 1500,
-    ######
-    "1x1": 100,
-    "2x1": 200,
-    "3x1": 1000,
-    "4x1": 2000,
-    "5x1": 3000,
-    "6x1": 4000,
-    ######
-    "3x2": 200,
-    "4x2": 400,
-    "5x2": 600,
-    "6x2": 800,
-    ######
-    "3x3": 300,
-    "4x3": 600,
-    "5x3": 900,
-    "6x3": 1200,
-    ######
-    "3x4": 400,
-    "4x4": 800,
-    "5x4": 1200,
-    "6x4": 1600,
-    ######
-    "1x5": 50,
-    "2x5": 100,
-    "3x5": 500,
-    "4x5": 1000,
-    "5x5": 1500,
-    "6x5": 2000,
-    ######
-    "3x6": 600,
-    "4x6": 1200,
-    "5x6": 1800,
-    "6x6": 2400
+    # 1 category
+    (1, 1): 100,
+    (1, 2): 200,
+    (1, 3): 1000,
+    (1, 4): 2000,
+    (1, 5): 3000,
+    (1, 6): 4000,
+    # 2 category
+    (2, 3): 200,
+    (2, 4): 400,
+    (2, 5): 600,
+    (2, 6): 800,
+    # 3 category
+    (3, 3): 300,
+    (3, 4): 600,
+    (3, 5): 900,
+    (3, 6): 1200,
+    # 4 category
+    (4, 3): 400,
+    (4, 4): 800,
+    (4, 5): 1200,
+    (4, 6): 1600,
+    # 5 category
+    (5, 1): 50,
+    (5, 2): 100,
+    (5, 3): 500,
+    (5, 4): 1000,
+    (5, 5): 1500,
+    (5, 6): 2000,
+    # 6 category
+    (6, 3): 600,
+    (6, 4): 1200,
+    (6, 5): 1800,
+    (6, 6): 2400,
     }
 
 #################################################################
@@ -65,71 +65,27 @@ class GameLogic:
         if pairs == 3:
             score += scoring["Three Pairs"]
             return(score)
-        # 1 cases
-        if dice[1] == 1:
-            score += scoring["1x1"]
-        if dice[1] == 2:
-            score += scoring["2x1"]
-        if dice[1] == 3:
-            score += scoring["3x1"]
-        if dice[1] == 4:
-            score += scoring["4x1"]
-        if dice[1] == 5:
-            score += scoring["5x1"]
-        if dice[1] == 6:
-            score += scoring["6x1"]
-        # 2 cases
-        if dice[2] == 3:
-            score += scoring["3x2"]
-        if dice[2] == 4:
-            score += scoring["4x2"]
-        if dice[2] == 5:
-            score += scoring["5x2"]
-        if dice[2] == 6:
-            score += scoring["6x2"]
-        # 3 cases
-        if dice[3] == 3:
-            score += scoring["3x3"]
-        if dice[3] == 4:
-            score += scoring["4x3"]
-        if dice[3] == 5:
-            score += scoring["5x3"]
-        if dice[3] == 6:
-            score += scoring["6x3"]
-        # 4 cases
-        if dice[4] == 3:
-            score += scoring["3x4"]
-        if dice[4] == 4:
-            score += scoring["4x4"]
-        if dice[4] == 5:
-            score += scoring["5x4"]
-        if dice[4] == 6:
-            score += scoring["6x4"]
-        # 5 cases
-        if dice[5] == 1:
-            score += scoring["1x5"]
-        if dice[5] == 2:
-            score += scoring["2x5"]
-        if dice[5] == 3:
-            score += scoring["3x5"]
-        if dice[5] == 4:
-            score += scoring["4x5"]
-        if dice[5] == 5:
-            score += scoring["5x5"]
-        if dice[5] == 6:
-            score += scoring["6x5"]
-        # 6 cases
-        if dice[6] == 3:
-            score += scoring["3x6"]
-        if dice[6] == 4:
-            score += scoring["4x6"]
-        if dice[6] == 5:
-            score += scoring["5x6"]
-        if dice[6] == 6:
-            score += scoring["6x6"]
         else:
-            score += 0
-        return(score)
+            # [1,2,1,3,4,6] 
+            # ((1,2), (2, 1), (3,1), (4,1), (6,1))
+            # length = 5
+
+            length = len(dice.most_common())
+        for i in range(length):
+            score += find_value((Counter(dice).most_common()[i]))
+            # print(score)
+        return score
+
+
+def find_value(value):
+
+    try:
+        scoring[value]
+    except:
+        return 0
+    else:
+        return scoring[value]
+
 #################################################################
 
 class Banker:
