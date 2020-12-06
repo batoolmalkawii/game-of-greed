@@ -65,26 +65,21 @@ class GameLogic:
         if pairs == 3:
             score += scoring["Three Pairs"]
             return(score)
+        # [1-6 cases]
         else:
-            # [1,2,1,3,4,6] 
-            # ((1,2), (2, 1), (3,1), (4,1), (6,1))
-            # length = 5
-
-            length = len(dice.most_common())
-        for i in range(length):
-            score += find_value((Counter(dice).most_common()[i]))
-            # print(score)
+            dice_length = len(dice.most_common())
+        for i in range(dice_length):
+            score += get_score((Counter(dice).most_common()[i]))
         return score
 
 
-def find_value(value):
-
+def get_score(dice_value):
     try:
-        scoring[value]
+        scoring[dice_value]
     except:
         return 0
     else:
-        return scoring[value]
+        return scoring[dice_value]
 
 #################################################################
 
