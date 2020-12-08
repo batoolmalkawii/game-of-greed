@@ -43,7 +43,7 @@ scoring = {
 #################################################################
 class GameLogic:
     @staticmethod
-    def roll_dice(times):
+    def roll_dice(times=6):
         return tuple(random.randint(1,6) for i in range (times))
 
     @staticmethod
@@ -95,6 +95,8 @@ class Banker:
     def bank (self):
         self.balance += self.shelved
         self.clear_shelf()
+        return self.balance
+
     def clear_shelf(self):
         self.shelved = 0
 
