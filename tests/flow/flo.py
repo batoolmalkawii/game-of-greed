@@ -1,5 +1,6 @@
 import builtins
 from game_of_greed.game import Game
+from game_of_greed.game_logic import GameLogic, Banker
 
 
 class Flo:
@@ -94,5 +95,4 @@ class Flo:
         builtins.input = self.old_input
 
 
-if __name__ == "__main__":
-    Flo.test("tests/flow/bank_one_roll_then_quit.txt")
+
