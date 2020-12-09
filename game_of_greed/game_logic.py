@@ -55,7 +55,6 @@ class GameLogic:
         if len(dice) == 0:
             return(score)
         if (dice.most_common(1)[0][1] == 1) and len(dice) == 6:
-            print("HI")
             score += scoring["Straight 1- 6"]
             return (score)
         # three pairs
@@ -71,6 +70,19 @@ class GameLogic:
         for i in range(dice_length):
             score += get_score((Counter(dice).most_common()[i]))
         return score
+
+    @staticmethod
+    def get_scorers(dice):
+        all_dice_score = GameLogic.calculate_score(dice)
+        if all_dice_score == 0:
+            return tuple()
+        scorers = []
+        for i in range(len(dice)):
+            sub_roll = dice[:i] + dice[i + 1 :]
+            sub_score = GameLogic.calculate_score(sub_roll)
+            if sub_score != all_dice_score:
+                scorers.append(dice[i])
+        return tuple(scorers)
 
 def get_score(dice_value):
     try:
@@ -108,3 +120,4 @@ if __name__ == "__main__":
     dice = game.roll_dice(6)
     print (dice)
     print(game.calculate_score(dice))
+    print("Scorers: ", game.get_scorers([1,2,3,4,5,4]))

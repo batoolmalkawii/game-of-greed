@@ -4,6 +4,9 @@ Part2 PR: https://github.com/batoolmalkawii/game-of-greed/pull/4
 
 Part3 PR: https://github.com/batoolmalkawii/game-of-greed/pull/5
 
+Part4 PR: https://github.com/batoolmalkawii/game-of-greed/pull/6
+
+
 * Game of Greed is a Dice game, aka _Farkle_. In part1, we implemented the following:
 
 **GameLogic** class:
