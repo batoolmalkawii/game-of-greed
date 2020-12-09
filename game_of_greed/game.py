@@ -152,7 +152,7 @@ class Game:
                     exists = does_exist(roll, dice_to_keep)
                 self.take_action(roll, dice_to_keep)
 
-    def play(self):
+    def play(self, times=20):
         print('Welcome to Game of Greed')
         res = input('Wanna play?')
         if res == 'n':

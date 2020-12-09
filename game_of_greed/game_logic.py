@@ -72,7 +72,6 @@ class GameLogic:
             score += get_score((Counter(dice).most_common()[i]))
         return score
 
-
 def get_score(dice_value):
     try:
         scoring[dice_value]
@@ -80,6 +79,8 @@ def get_score(dice_value):
         return 0
     else:
         return scoring[dice_value]
+
+
 
 #################################################################
 
